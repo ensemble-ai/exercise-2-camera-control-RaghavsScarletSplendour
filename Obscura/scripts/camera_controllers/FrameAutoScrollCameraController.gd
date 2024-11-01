@@ -21,17 +21,21 @@ func _process(delta: float) -> void:
 	
 	global_position.x += box_speed * delta
 	
+	# Create variable for target and camera position
 	var tpos = target.global_position
 	var cpos = global_position
 	
+	# Create bounds for the box
 	var left_bound = cpos.x - box_width / 2.0
 	var right_bound = cpos.x + box_width / 2.0
 	var top_bound = cpos.z - box_width / 2.0
 	var bottom_bound = cpos.z + box_width / 2.0
 	
+	# Make sure the player cannot exceed these bounds
 	tpos.x = clamp(tpos.x, left_bound + target.WIDTH / 2.0, right_bound - target.WIDTH / 2.0)
 	tpos.z = clamp(tpos.z, top_bound + target.WIDTH / 2.0, bottom_bound - target.WIDTH / 2.0)
 	
+	# Update player position
 	target.global_position = tpos
 		
 	super(delta)

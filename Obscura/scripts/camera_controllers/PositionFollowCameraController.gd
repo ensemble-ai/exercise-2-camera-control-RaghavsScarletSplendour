@@ -21,16 +21,15 @@ func _process(delta: float) -> void:
 	if draw_camera_logic:
 		draw_logic()
 	
+	# Create variable for target and camera position
 	var tpos = target.global_position
 	var cpos = global_position
 	
-	#global_position.x = lerp(cpos.x, tpos.x, followSpeedFactor * delta)
-	#global_position.z = lerp(cpos.z, tpos.z, followSpeedFactor * delta)
-	
+	# Leash logic
 	if tpos.x - cpos.x <= leashDistance:
-		cpos.x = lerp(cpos.x, tpos.x, followSpeedFactor * delta)
 		cpos.z = lerp(cpos.z, tpos.z, followSpeedFactor * delta)
-	
+		cpos.x = lerp(cpos.x, tpos.x, followSpeedFactor * delta)
+		
 	else:
 		cpos.x = lerp(cpos.x, tpos.x, catchUpSpeed * delta)
 		cpos.z = lerp(cpos.z, tpos.z, catchUpSpeed * delta)

@@ -23,7 +23,8 @@ func _process(delta: float) -> void:
 	
 	if draw_camera_logic:
 		draw_logic()
-
+	
+	# Create variable for target and camera position
 	var tpos = target.global_position
 	var cpos = global_position
 	var is_target_moving = target.velocity.length() > 0.01
@@ -40,7 +41,8 @@ func _process(delta: float) -> void:
 		idle_timer += delta
 		if idle_timer >= idleDuration:
 			is_idle = true
-
+	
+	# Adjusting the camera position relative to the vessel
 	if is_target_moving and distance_to_target <= leadMaxDistance:
 		cpos.x = lerp(cpos.x, camera_position.x, delta * followSpeedFactor)
 		cpos.z = lerp(cpos.z, camera_position.z, delta * followSpeedFactor)
@@ -48,7 +50,8 @@ func _process(delta: float) -> void:
 	elif is_idle:
 		cpos.x = lerp(cpos.x, tpos.x, returnSpeed * delta)
 		cpos.z = lerp(cpos.z, tpos.z, returnSpeed * delta)
-		
+	
+	# Adjusting the main global position
 	global_position = cpos
 	
 	super(delta)
