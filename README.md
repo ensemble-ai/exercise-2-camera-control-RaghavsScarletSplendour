@@ -1,5 +1,11 @@
 # Camera Control Exercise
 
+## Known Issues
+
+The initial camera stage is stage 1 but the cross does not show up by default
+
+For stage 4, the function only works when we press the up,down,left,right key. Does not work when we try pressing the keys simultaneously 
+
 ## Description
 
 Your goal is to create several swappable camera control scripts for a top-down terraforming simulator.
